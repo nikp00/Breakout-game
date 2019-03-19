@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>The bricks</title>
+  <link rel="stylesheet" type="text/css" href="../css/sweetalert2.css">
+  <script type="text/javascript" src="../lib/sweetalert2.all.min.js"></script>
+  <script src="../lib/p5.js"></script>
+  <script src="../lib/p5.dom.js"></script>
+  <script src="../lib/p5.sound.js"></script>
+  <script src="../lib/ml5.js"></script>
+  <script src="../js/powerups.js"></script>
+  <script src="../js/helperFunctions.js"></script>
+  <script src="../js/brick.js"></script>
+  <script src="../js/brickColisionDetection.js"></script>
+  <script src="../js/ball.js"></script>
+  <script src="../js/paddle.js"></script>
+  <script src="../js/regression.js"></script>
+  <script src="../js/levels.js"></script>
+  <script src="../js/main1.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+
+</head>
+
+<body>
+  <h1> THE BRICKS </h1>
+  <div id="canvasContainer" class="canvasContainer" id="canvasContainer">
+  </div>
+  <div class="imagesCounterContainer">
+    <div id="left" class="imagesC">
+      Left: <br> 0
+    </div>
+    <div id="center" class="imagesC">
+      Center: <br> 0
+    </div>
+    <div id="right" class="imagesC">
+      Right: <br> 0
+    </div>
+
+  </div>
+  <nav class="bottom">
+    <div class="button" id="draw" onclick="startStop()">
+      START / STOP
+    </div>
+    <div class="button" id="hide" onclick="hide()">
+      SHOW CAM
+    </div>
+    <div class="button" id="addImage">
+      ADD IMAGE
+    </div>
+    <div class="button" id="train">
+      TRAIN
+    </div>
+    <div class="button" id="predict">
+      PREDICT
+    </div>
+    <input type="range" id="range" name="volume" class="button" min="0.01" max="1" step="0.01" value="0.5">
+    <div id="dropZone">
+      DROP A SONG HERE
+    </div>
+    <div class="button" onclick="reload()">
+      RELOAD
+    </div>
+    <div class="button" id="infoRegression" onclick="infoRegression()">
+      INFO
+    </div>
+  </nav>
+</body>
+
+</html>

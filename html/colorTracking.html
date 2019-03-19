@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>The bricks</title>
+  <link rel="stylesheet" type="text/css" href="../css/sweetalert2.css">
+  <script type="text/javascript" src="../lib/sweetalert2.all.min.js"></script>
+  <script src="../lib/p5.js"></script>
+  <script src="../lib/p5.dom.js"></script>
+  <script src="../lib/p5.sound.js"></script>
+  <script src="../lib/ml5.js"></script>
+  <script src="../js/powerups.js"></script>
+  <script src="../js/helperFunctions.js"></script>
+  <script src="../js/brick.js"></script>
+  <script src="../js/brickColisionDetection.js"></script>
+  <script src="../js/ball.js"></script>
+  <script src="../js/paddle.js"></script>
+  <script src="../js/regression.js"></script>
+  <script src="../js/levels.js"></script>
+  <script src="../js/colorTracking.js"></script>
+  <script src="../js/main2.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+
+</head>
+
+<body>
+  <h1> THE BRICKS </h1>
+  <div id="canvasContainer" class="canvasContainer" id="canvasContainer">
+
+  </div>
+
+
+  <nav class="bottom">
+    <div class="button" id="draw" onclick="startStop()">
+      START / STOP
+    </div>
+    <div class="button" id="hide" onclick="hide()">
+      SHOW CAM
+    </div>
+    <div class="button" id="solve1" onclick="clearTrackedColors()">
+      CLEAR TRACKED COLORS
+    </div>
+    <div class="range">
+      <div>THRESHOLD
+      </div>
+      <input type="range" id="tr" name="volume" min="4" max="30" onchange="tr()">
+      <div id="range">
+      </div>
+    </div>
+    <div id="dropZone">
+      DROP A SONG HERE
+    </div>
+    <div class="button" onclick="reload()">
+      RELOAD
+    </div>
+    <div class="button" id="infoColorTracking" onclick="infoColorTracking()">
+      INFO
+    </div>
+  </nav>
+</body>
+
+</html>
