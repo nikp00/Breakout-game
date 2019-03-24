@@ -119,7 +119,10 @@ function saveLevel() {
       name = document.getElementById('levelName').value;
       var level = {
         label: name,
-        data: m
+        data: m,
+        time1: null,
+        time2: null,
+        time3: null
       };
       localStorage.setItem(name, JSON.stringify(level));
       Swal.fire({

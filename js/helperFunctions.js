@@ -24,10 +24,10 @@ function startStop() {
 
   if (!run) {
     run = true;
-    audio.play();
+    //audio.play();
   } else {
     run = false;
-    audio.pause();
+    //audio.pause();
   }
 }
 
@@ -129,7 +129,6 @@ function reload() {
 }
 
 function checkState() {
-
   var finish = true;
   for (let i = 0; i < bricks.length; i++) {
     if (bricks[i].wasHit != true) {
@@ -146,6 +145,7 @@ function checkState() {
       type: 'info',
       title: 'YOU WON'
     }).then(function() {
+      writeLeaderboard();
       reload();
     });
   }
@@ -177,8 +177,6 @@ function changeLevel() {
     else {
       bricks[i].wasHit = true;
     }
-
-
   }
 }
 
@@ -191,11 +189,12 @@ function selectLevel() {
       '<option value="default" >Default</option>' +
       '</select>'
   }).then(function() {
-    let l = document.getElementById('levels').options[document.getElementById('levels').selectedIndex].value;
-    matrix = JSON.parse(localStorage.getItem(l)).data.split(',');
+    currentLevel = document.getElementById('levels').options[document.getElementById('levels').selectedIndex].value;
+    currentLevel = JSON.parse(localStorage.getItem(currentLevel));
+    matrix = currentLevel.data.split(',');
     changeLevel();
 
-  });;
+  });
 }
 
 function fillLevels() {
@@ -206,4 +205,94 @@ function fillLevels() {
       console.log("");
     }
   }
+}
+
+function timer() {
+  s++;
+  if (s % 60 == 0) {
+    s = 0;
+    m++;
+  }
+  if (s % 10 != 0 && s < 10) {
+    if (m < 10) {
+      time = "0" + m + ":0" + s;
+    } else {
+      time = m + ":0" + s;
+    }
+  } else {
+    if (m < 10) {
+      time = "0" + m + ":" + s;
+    } else {
+      time = m + ":" + s;
+    }
+  }
+  document.getElementById('timer').innerHTML = "Time: <br>" + time;
+}
+
+function checkLeaderboard() {
+  Swal.fire({
+    type: 'info',
+    title: 'INFO',
+    html: '<div class="tableContainer">' +
+      "<table>" +
+      "<tr>" +
+      "<td>Standing</td><td>Time</td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td>1</td><td>" + JSON.parse(localStorage.getItem(currentLevel.label)).time1 + "</td>" +
+      "</tr>" +
+
+      "<tr>" +
+      "<td>2</td><td>" + JSON.parse(localStorage.getItem(currentLevel.label)).time2 + "</td>" +
+      "</tr>" +
+
+      "<tr>" +
+      "<td>3</td><td>" + JSON.parse(localStorage.getItem(currentLevel.label)).time3 + "</td>" +
+      "</tr>" +
+      "</table></div>"
+  });
+}
+
+function writeLeaderboard() {
+  let tempMin, tempSec, tempTime;
+  tempMin = time.split(':')[0];
+  tempSec = time.split(':')[1];
+  tempTime = tempMin * 60 + tempSec;
+
+  console.log(tempMin, tempSec, tempTime);
+
+  let tempLocalTime1, tempLocalTime2, tempLocalTime3;
+
+  if (currentLevel.time1 != null) {
+    tempLocalTime1 = currentLevel.time1.split(':')[0] * 60 + currentLevel.time1.split(':')[1];
+  } else {
+    tempLocalTime1 = Number.MAX_SAFE_INTEGER;
+  }
+  if (currentLevel.time2 != null) {
+    tempLocalTime2 = currentLevel.time2.split(':')[0] * 60 + currentLevel.time2.split(':')[1];
+  } else {
+    tempLocalTime2 = Number.MAX_SAFE_INTEGER;
+  }
+  if (currentLevel.time3 != null) {
+    tempLocalTime3 = currentLevel.time3.split(':')[0] * 60 + currentLevel.time3.split(':')[1];
+  } else {
+    tempLocalTime3 = Number.MAX_SAFE_INTEGER;
+  }
+
+  console.log(tempLocalTime1, tempLocalTime2, tempLocalTime3);
+
+  if (tempLocalTime1 > tempTime) {
+    currentLevel.time3 = currentLevel.time2;
+    currentLevel.time2 = currentLevel.time1;
+    currentLevel.time1 = time;
+    console.log("asdasdasd");
+  } else if (tempLocalTime2 > tempTime) {
+    currentLevel.time3 = currentLevel.time2;
+    currentLevel.time2 = time;
+  } else if (tempLocalTime3 > tempTime) {
+    currentLevel.time3 = time;
+  }
+
+  localStorage.setItem(currentLevel.label, JSON.stringify(currentLevel));
+
 }

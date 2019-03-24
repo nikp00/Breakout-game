@@ -1,7 +1,7 @@
 function brickColisionDetection() {
   for (let i = 0; i < bricks.length; i++) {
-    if (ball.x + ball.r / 2 > bricks[i].x && ball.x - ball.r / 2 < bricks[i].x + bricks[i].w &&
-      ball.y + ball.r / 2 > bricks[i].y && ball.y - ball.r / 2 < bricks[i].y + bricks[i].h && !bricks[i].wasHit) {
+    if (ball.x + ball.r / 2 + 1 > bricks[i].x && ball.x - ball.r / 2 - 1 < bricks[i].x + bricks[i].w &&
+      ball.y + ball.r / 2 + 1 > bricks[i].y && ball.y - ball.r / 2 - 1 < bricks[i].y + bricks[i].h && !bricks[i].wasHit) {
       bricks[i].wasHit = true;
 
       if (bricks[i].powerup.life > 0) {

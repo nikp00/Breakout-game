@@ -58,6 +58,12 @@ var right = 0;
 
 var matrix = defaultLevel.data.split(',');
 
+var stopwatch, time;
+var s = 0;
+var m = 0;
+
+var currentLevel;
+
 function preload() {
   audio = loadSound('../assets/song_1.mp3');
   def = loadImage("../assets/default.png");
@@ -129,7 +135,6 @@ function setup() {
   audio.loop();
 
   selectLevel();
-
 }
 
 function draw() {
@@ -201,11 +206,13 @@ function draw() {
     brickColisionDetection();
     if (audio.isPaused()) {
       audio.play();
+      stopwatch = setInterval(timer, 1000);
     }
     ball.check();
   } else {
     if (audio.isPlaying()) {
       audio.pause();
+      clearInterval(stopwatch);
     }
   }
   ball.render();

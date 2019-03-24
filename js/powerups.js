@@ -55,7 +55,9 @@ function PowerUp(n, i, j, w, h, index) {
       this.y = bricks[this.parentBrick].y;
       this.x = bricks[this.parentBrick].x;
     }
-    this.y += this.gravity;
+    if (run) {
+      this.y += this.gravity;
+    }
     image(this.image, this.x + this.w / 2, this.y, this.w, this.h);
   }
 

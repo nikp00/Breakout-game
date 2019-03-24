@@ -205,3 +205,22 @@ li {
   background: black;
   color: white;
 }
+
+.tableContainer table {
+  width: 70%;
+  margin: 0 auto;
+  border: solid 0 1px;
+  font-family: pixle;
+  font-size: 1.2vh;
+  color: black;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.tableContainer td {
+  border: 0.3vh dashed black;
+}
+
+.tableContainer tr {
+  height: 4vh;
+}

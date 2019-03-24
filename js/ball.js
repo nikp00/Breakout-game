@@ -48,7 +48,7 @@ function Ball(r, x, y) {
       }
 
       fill(255);
-      ellipse(this.x, this.y, r, r);
+      ellipse(this.x, this.y, this.r, this.r);
 
       if (dx == 0 && dy == 0) {
         dx = oldDx;
@@ -56,7 +56,8 @@ function Ball(r, x, y) {
       }
     } else {
       fill(255);
-      ellipse(this.x, this.y, r, r);
+      ellipse(this.x, this.y, this.r, this.r);
+
     }
   }
 
