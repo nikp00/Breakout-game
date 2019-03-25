@@ -38,7 +38,7 @@ function keyPressed() {
   } else if (keyCode == 39) {
     paddle.left = false;
     paddle.right = true;
-  } else if (keyCode == 32 && paddle.magForce == 1000) {
+  } else if (keyCode == 38 && paddle.magForce == 1000) {
     paddle.magForce = 0;
     spacePressed = true;
     ballIsFrezzed = false;
