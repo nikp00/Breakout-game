@@ -24,10 +24,10 @@ function startStop() {
 
   if (!run) {
     run = true;
-    //audio.play();
+    audio.play();
   } else {
     run = false;
-    //audio.pause();
+    audio.pause();
   }
 }
 
